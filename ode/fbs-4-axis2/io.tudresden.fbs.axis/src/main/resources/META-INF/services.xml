@@ -1,0 +1,23 @@
+<serviceGroup>
+	<service name="FeedbackService">
+		<Description>Interface for accessing the IoTUDresden FeedbackService
+		</Description>
+		<!-- locked ensures that the value is not overridden -->
+		<parameter name="ServiceClass" locked="true">io.tudresden.fbs.axis.AXISFeedbackService</parameter>
+		<parameter name="FbsContextId" locked="false">12</parameter>
+		<parameter name="FbsServerAndPort" locked="false">localhost:9000</parameter>
+
+		<!-- all public methods of the service class are exposed here automatically -->
+		<!-- message receivers are listed explicit because of errors:  -->
+		<!-- https://stackoverflow.com/q/36319901 -->
+		<messageReceivers>
+			<messageReceiver
+				mep="http://www.w3.org/ns/wsdl/in-only"
+				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+			<messageReceiver
+				mep="http://www.w3.org/ns/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</messageReceivers>
+	</service>
+
+</serviceGroup>

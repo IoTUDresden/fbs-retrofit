@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.tudresden</groupId>
+	<artifactId>io.tudresden.fbs.axis</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>AXIS2 FeedbackService</name>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<aar.maven.plugin.version>1.7.7</aar.maven.plugin.version>
+		<aar.name>FeedbackService</aar.name>
+		<aar.include.dependencies>false</aar.include.dependencies>
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-kernel -->
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-kernel</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2-aar-maven-plugin</artifactId>
+				<version>${aar.maven.plugin.version}</version>
+				<extensions>true</extensions>
+
+				<configuration>
+					<!-- Set true if you want Depending Jar to be included into AAR file -->
+					<includeDependencies>${aar.include.dependencies}</includeDependencies>
+					<aarName>${aar.name}</aarName>
+					<!-- <outputDirectory>${basedir}/src/webapp/</outputDirectory> -->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>aar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
