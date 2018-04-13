@@ -22,4 +22,7 @@
 - Run Maven Build (package)
 - Anschließend Binaries (WEB-INF) aus `target` (z.B. aus dem Ordner `yawl.feedbackservice-0.0.1-SNAPSHOT`) zu `webapps/feedbackService` kopieren
 - Dann im YAWL Web-Interface unter `Services` den Service anlegen (für Adresse z.B. http://localhost/feedbackService/ib`)
+
+## FBS 4 Yawl
+- Zugangsdaten für Service `PWD = "1234" USER = "feedbackService"`
   
