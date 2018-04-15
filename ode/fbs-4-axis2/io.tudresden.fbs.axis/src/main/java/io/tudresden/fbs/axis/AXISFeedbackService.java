@@ -28,12 +28,12 @@ public class AXISFeedbackService implements Lifecycle {
 	 * @return
 	 */
 	public FeedbackResponse runFeedbackService(String goal, Workflow workflow) {
-		LOG.info("starting feedback service for workflow '"+ workflow.name + "'");
+		LOG.info("starting feedback service for workflow '"+ workflow.getName() + "'");
 		long startTime = System.currentTimeMillis();
 		
 		FeedbackResponse response = new FeedbackResponse();
-		response.hasBeenFinished = true;
-		response.hasBeenSatisfied = true;
+		response.setHasBeenFinished(true);
+		response.setHasBeenSatisfied(true);
 		
 		long endTime = System.currentTimeMillis();
 		long duration = endTime - startTime;
@@ -61,7 +61,7 @@ public class AXISFeedbackService implements Lifecycle {
 	}
 	
 	private String finishedMessage(Workflow workflow, FeedbackResponse response, long duration) {
-		return "finished feedback service for '"+ workflow.name + "' in "+ duration +" ms";
+		return "finished feedback service for '"+ workflow.getName() + "' in "+ duration +" ms";
 	}
 
 }

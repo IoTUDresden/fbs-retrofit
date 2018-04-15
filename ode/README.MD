@@ -27,6 +27,14 @@
 - [Beispiel Services](https://github.com/apache/axis2-java/tree/329ac88407e73d63c1831c85a1228abc588d8f39/modules/samples)
 - wenn Service deployed wurde, lässt sich die entsprechende `wsdl` über das Axis2 Webinterface herunterladen
 - wenn ein Parameter auf `locked` gestellt ist, verhindert dies die Änderung der Werte für alle Parameter (im Admin Panel)
+- Beans müssen über Getter/Setter verfügen, sonst wird die wsdl nicht korrekt erzeugt
+   - Felder können über Eintrag in der `service.xml` ignoriert werden
+   ```
+	<parameter name="beanPropertyRules">
+		<bean class="sample.Address" excludeProperties="street,number" />
+		<bean class="sample.AddressParent" excludeProperties="zipcode" />
+	</parameter>
+	```
 
 # AXISFeedbackService
 - Build über `mvn build`
