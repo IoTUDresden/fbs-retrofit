@@ -1,23 +1,41 @@
-<serviceGroup>
+<serviceGroup name="FeedbackServiceEvaluation">
 	<service name="FeedbackService">
 		<Description>Interface for accessing the IoTUDresden FeedbackService
 		</Description>
 		<!-- locked ensures that the value is not overridden -->
-		<parameter name="ServiceClass" locked="true">io.tudresden.fbs.axis.AXISFeedbackService</parameter>
+		<parameter name="ServiceClass" locked="false">io.tudresden.fbs.axis.AXISFeedbackService
+		</parameter>
 		<parameter name="FbsContextId" locked="false">12</parameter>
-		<parameter name="FbsServerAndPort" locked="false">localhost:9000</parameter>
+		<parameter name="FbsServerAndPort" locked="false">localhost:9000
+		</parameter>
 
 		<!-- all public methods of the service class are exposed here automatically -->
-		<!-- message receivers are listed explicit because of errors:  -->
+		<!-- message receivers are listed explicit because of errors: -->
 		<!-- https://stackoverflow.com/q/36319901 -->
 		<messageReceivers>
-			<messageReceiver
-				mep="http://www.w3.org/ns/wsdl/in-only"
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-only"
 				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
-			<messageReceiver
-				mep="http://www.w3.org/ns/wsdl/in-out"
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out"
 				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
 		</messageReceivers>
+	</service>
+
+	<service name="OpenHABService">
+		<Description>This interface handles calls to OpenHAB (e.g. sending commands)</Description>
+		<!-- locked ensures that the value is not overridden -->
+		<parameter name="ServiceClass" locked="false">io.tudresden.fbs.axis.AXISOpenHABService
+		</parameter>
+		<parameter name="OpenHABHost" locked="false">localhost:8080</parameter>
+
+		<!-- message receivers are listed explicit because of errors: -->
+		<!-- https://stackoverflow.com/q/36319901 -->
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-only"
+				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</messageReceivers>
+
 	</service>
 
 </serviceGroup>

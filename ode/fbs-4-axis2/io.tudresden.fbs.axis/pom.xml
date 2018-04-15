@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<aar.maven.plugin.version>1.7.7</aar.maven.plugin.version>
 		<aar.name>FeedbackService</aar.name>
-		<aar.include.dependencies>false</aar.include.dependencies>
+		<aar.include.dependencies>true</aar.include.dependencies>
 	</properties>
 
 	<dependencies>
@@ -32,6 +32,14 @@
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>9.6.0</version>
+		</dependency>
+
 
 	</dependencies>
 

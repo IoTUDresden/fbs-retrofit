@@ -26,11 +26,12 @@
    - Services sind standardmäßig hot deployable
 - [Beispiel Services](https://github.com/apache/axis2-java/tree/329ac88407e73d63c1831c85a1228abc588d8f39/modules/samples)
 - wenn Service deployed wurde, lässt sich die entsprechende `wsdl` über das Axis2 Webinterface herunterladen
+- wenn ein Parameter auf `locked` gestellt ist, verhindert dies die Änderung der Werte für alle Parameter (im Admin Panel)
 
 # AXISFeedbackService
 - Build über `mvn build`
 - `FeedbackService.aar` aus Target Ordner in den Axis2 Services Ordner kopieren
-   - Context Uri und FeedbackService Uri können in der `service.xml` (innerhalb der aar) angepasst werden. Anpassung über das Web-Interface bringt leider einen Server Error
+   - Context Uri und FeedbackService Uri können im Admin Panel oder in der `service.xml` (innerhalb der aar) angepasst werden.
 - sicherstellen, dass [Feedback-Service](https://github.com/IoTUDresden/feedback-service) läuft
 
 # Modellierung Tips
@@ -74,7 +75,7 @@
 
 
 ## Links
-[http://www.oracle.com/technetwork/articles/matjaz-bpel1-090575.html](http://www.oracle.com/technetwork/articles/matjaz-bpel1-090575.html)
-[https://docs.oracle.com/cd/E19182-01/821-0539/ggbxz/index.html](https://docs.oracle.com/cd/E19182-01/821-0539/ggbxz/index.html)
-[http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html](http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html)
-[https://www.codeproject.com/Articles/33746/An-Example-Of-BPEL-invoking-WebService](http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html)
+- [http://www.oracle.com/technetwork/articles/matjaz-bpel1-090575.html](http://www.oracle.com/technetwork/articles/matjaz-bpel1-090575.html)
+- [https://docs.oracle.com/cd/E19182-01/821-0539/ggbxz/index.html](https://docs.oracle.com/cd/E19182-01/821-0539/ggbxz/index.html)
+- [http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html](http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html)
+- [https://www.codeproject.com/Articles/33746/An-Example-Of-BPEL-invoking-WebService](http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html)
