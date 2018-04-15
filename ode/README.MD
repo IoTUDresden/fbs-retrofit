@@ -25,6 +25,7 @@
    - `*.aar` Datei in `apache-tomcat-x.x.x/webapps/axis2/WEB-INF/services` kopieren
    - Services sind standardmäßig hot deployable
 - [Beispiel Services](https://github.com/apache/axis2-java/tree/329ac88407e73d63c1831c85a1228abc588d8f39/modules/samples)
+- wenn Service deployed wurde, lässt sich die entsprechende `wsdl` über das Axis2 Webinterface herunterladen
 
 # AXISFeedbackService
 - Build über `mvn build`
@@ -32,3 +33,48 @@
    - Context Uri und FeedbackService Uri können in der `service.xml` (innerhalb der aar) angepasst werden. Anpassung über das Web-Interface bringt leider einen Server Error
 - sicherstellen, dass [Feedback-Service](https://github.com/IoTUDresden/feedback-service) läuft
 
+# Modellierung Tips
+- [HelloWorld](http://www-inf.it-sudparis.eu/SIMBAD/courses/doku.php?id=teaching_assistant:bpel:deploying_hello_world_bpel_process_with_eclipse_bpel_designer_and_apache_ode)
+- nur Content der im Ordner `bpelContent` liegt, wird mit Server synchronisiert (Rechtsklick auf Server und dann auf Publish)
+
+# Ausführen und Testen
+- Sicherstellen, dass die [Eclipse Java EE Developer Tools](https://marketplace.eclipse.org/user/nitind/listings) installiert sind
+- Rechtsklick auf `*.wsdl` &rarr; Webservices &rarr; Test with Web Service Explorer
+   - beim Durchnavigieren der Services ggf. mal auf Refresh im Navigator klicken, falls die entsprechende Seite nicht geladen wird
+   
+# BPEL cheat sheet
+- für die automatisch erstellte wsdl muss für den Process die richtige Adresse unter ODE angegeben werden &rarr; `http://localhost:8080/ode/processes/<ProcessName>`
+- in `deploy.xml` müssen die entsprechenden Ports für die Links angegeben werden
+
+## Aktionen
+- `invoke` anderen WS aufrufen
+- `receive` empfange von anderen Client 
+- `reply` antworte anderen Client
+- `assign` Variablen zuweisen, manipulieren
+- `wait` warten
+- `terminate` kompletten Prozess beenden
+- `throw` Fehler und Ausnahmen anzeigen
+
+## Kontrollkonstrukte
+- `sequence` Aktivitäten, welche in geordneter Swquenz ausgeführt werden
+- `flow` Aktivitäten, welche parallel ausgeführt werden
+- `switch` um Branches zu implementieren
+- `while` Schleife
+- `pick` um einen von mehreren Pfaden zu wählen
+
+## andere Services einbinden
+- andere Services werden `partner Web service` genannt
+- `partner links` geben jeweils an, welcher web service genutzt wird
+   - Rollen können auch für jeden Partnerlink angegeben werden (eigene Rolle und Rolle des Partner Links)
+   - Rollen können für jeden PortType angegeben werden (definiert die eig. Funktion etwas genauer, z.B. callback)
+- `port type` definiert eine Reihe von Methoden, die über den Web Service erreichbar sind. Kann man auch mit Interface vergleichen.
+   - `input` und `output` sind die entsprechenden Parameter die der Service benötigt
+- `binding` beschreibt, wie der port type zu nutzen ist (z.B. SOAP Action). HTTP Binding (z.B. für POST) sollte eig. auch unterstützt werden.
+- in `deploy.xml` muss der entsprechende Axis2 Endpoint angegeben werden &rarr; `...HttpSOAP11...` (sicherstellen, dass für diesen Endpoint auch die Adresse angegeben ist)
+
+
+## Links
+[http://www.oracle.com/technetwork/articles/matjaz-bpel1-090575.html](http://www.oracle.com/technetwork/articles/matjaz-bpel1-090575.html)
+[https://docs.oracle.com/cd/E19182-01/821-0539/ggbxz/index.html](https://docs.oracle.com/cd/E19182-01/821-0539/ggbxz/index.html)
+[http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html](http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html)
+[https://www.codeproject.com/Articles/33746/An-Example-Of-BPEL-invoking-WebService](http://www-inf.it-sudparis.eu/cours/WebServices/TP_BPEL/installationBPELODE.html)
