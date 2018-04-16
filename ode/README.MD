@@ -41,6 +41,8 @@
 - `FeedbackService.aar` aus Target Ordner in den Axis2 Services Ordner kopieren
    - Context Uri und FeedbackService Uri können im Admin Panel oder in der `service.xml` (innerhalb der aar) angepasst werden.
 - sicherstellen, dass [Feedback-Service](https://github.com/IoTUDresden/feedback-service) läuft
+- enthält auch einen einfachen Service, der das Senden von Commands an OpenHAB ermöglicht
+- in der `service.xml` oder im Admin Panel lässt sich über die Service Class in den Debug Modus schalten. Einfach `Debug` an den Klassennamen anhängen. Es werden dann nur Nachrichten geloggt und keine Aktionen mit dem FBS oder OH ausgeführt 
 
 # Modellierung Tips
 - [HelloWorld](http://www-inf.it-sudparis.eu/SIMBAD/courses/doku.php?id=teaching_assistant:bpel:deploying_hello_world_bpel_process_with_eclipse_bpel_designer_and_apache_ode)

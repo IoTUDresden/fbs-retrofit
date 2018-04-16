@@ -1,13 +1,16 @@
 package io.tudresden.fbs.axis.util;
 
-import feign.Headers;
-import feign.Param;
-import feign.RequestLine;
-
-public interface OpenHABClient {
+public class OpenHABClient extends AbstractHttpClient {
+	private static final String itemPath = "/rest/items/";
 	
-	@RequestLine("POST /rest/items/{itemName}")
-	@Headers("Content-Type: text/plain")
-	void sendCommand(@Param("itemName") String itemName, String command);
+	public OpenHABClient(String openHabHost) {
+		super(openHabHost);	
+	}
+	
+	public void postCommand(String itemName, String command) {
+		postTextPlain(itemPath + itemName, command);
+	}
+	
+	
 
 }

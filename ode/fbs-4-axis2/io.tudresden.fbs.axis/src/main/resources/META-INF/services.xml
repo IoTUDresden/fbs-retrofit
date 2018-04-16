@@ -38,8 +38,4 @@
 
 	</service>
 
-	<parameter name="beanPropertyRules">
-		<bean class="io.tudresden.fbs.axis.beans.Workflow" excludeProperties="valid" />
-	</parameter>
-
 </serviceGroup>

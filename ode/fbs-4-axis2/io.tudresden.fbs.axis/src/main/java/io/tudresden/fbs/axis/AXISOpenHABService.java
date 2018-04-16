@@ -7,16 +7,14 @@ import org.apache.axis2.service.Lifecycle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import feign.Feign;
-import feign.jackson.JacksonDecoder;
-import feign.jackson.JacksonEncoder;
 import io.tudresden.fbs.axis.util.OpenHABClient;
 
 public class AXISOpenHABService implements Lifecycle {
-	private static final Log LOG = LogFactory.getLog(AXISOpenHABService.class);
+	protected static final Log LOG = LogFactory.getLog(AXISOpenHABService.class);
+	protected static final String commandLog = "sending command '%s' to '%s/rest/items/%s'...";
 	
-	private String openhabHost = "ERROR";
-	private String commandLog = "sending command '%s' to '%s/rest/items/%s'...";
+	protected String openhabHost = "ERROR";
+
 	
 	private OpenHABClient client;
 
@@ -30,7 +28,7 @@ public class AXISOpenHABService implements Lifecycle {
 	 */
 	public void postCommand(String itemName, String command) {
 		LOG.info(String.format(commandLog, command, openhabHost, itemName));
-		client.sendCommand(itemName, command);
+		client.postCommand(itemName, command);
 	}
 
 	public void destroy(ServiceContext context) {
@@ -48,10 +46,7 @@ public class AXISOpenHABService implements Lifecycle {
 		if(!openhabHost.startsWith("http"))
 			openhabHost = "http://" + openhabHost;
 		
-		client = Feign.builder()
-				.encoder(new JacksonEncoder())
-				.decoder(new JacksonDecoder())
-				.target(OpenHABClient.class, openhabHost);
+		client = new OpenHABClient(openhabHost);
 	}
 
 }

@@ -5,6 +5,13 @@ public class FeedbackResponse {
 	private boolean hasBeenSatisfied;
 	private boolean hasBeenFinished;
 	
+	public FeedbackResponse() {	}
+	
+	public FeedbackResponse(boolean hasBeenFinished, boolean hasBeenSatisfied) {	
+		this.hasBeenFinished = hasBeenFinished;
+		this.hasBeenSatisfied = hasBeenSatisfied;
+	}
+	
 	public boolean isHasBeenSatisfied() {
 		return hasBeenSatisfied;
 	}
