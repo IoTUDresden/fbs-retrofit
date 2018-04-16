@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eclipse.org/bpel/sample" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://axis.fbs.tudresden.io" name="Light" targetNamespace="http://eclipse.org/bpel/sample">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sample.bpel.org/bpel/sample" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://axis.fbs.tudresden.io" name="SwitchOnLight" targetNamespace="http://sample.bpel.org/bpel/sample">
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      TYPE DEFINITION - List of types participating in this BPEL process 
@@ -7,15 +7,14 @@
      but you can define or import any XML Schema type and use them as part 
      of the message types.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
-    <plnk:partnerLinkType name="FeedbackServiceLT">
-    <plnk:role name="ProcessRole" portType="wsdl:FeedbackServicePortType"/>
-    <plnk:role name="FBSRole" portType="wsdl:FeedbackServicePortType"/>
+    <plnk:partnerLinkType name="OhLT">
+    <plnk:role name="OhServiceRole" portType="wsdl:OpenHABServicePortType"/>
   </plnk:partnerLinkType>
-    <import location="FBS.wsdl" namespace="http://axis.fbs.tudresden.io"/>
+    <import location="OH.wsdl" namespace="http://axis.fbs.tudresden.io"/>
     <types>
-        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://eclipse.org/bpel/sample">
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://sample.bpel.org/bpel/sample">
 
-            <element name="LightRequest">
+            <element name="SwitchOnLightRequest">
                 <complexType>
                     <sequence>
                         <element name="input" type="string"/>
@@ -23,7 +22,7 @@
                 </complexType>
             </element>
 
-            <element name="LightResponse">
+            <element name="SwitchOnLightResponse">
                 <complexType>
                     <sequence>
                         <element name="result" type="string"/>
@@ -38,11 +37,11 @@
      MESSAGE TYPE DEFINITION - Definition of the message types used as 
      part of the port type defintions
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
-    <message name="LightRequestMessage">
-        <part element="tns:LightRequest" name="payload"/>
+    <message name="SwitchOnLightRequestMessage">
+        <part element="tns:SwitchOnLightRequest" name="payload"/>
     </message>
-    <message name="LightResponseMessage">
-        <part element="tns:LightResponse" name="payload"/>
+    <message name="SwitchOnLightResponseMessage">
+        <part element="tns:SwitchOnLightResponse" name="payload"/>
     </message>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,18 +49,18 @@
      a logical service unit.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
 
-    <!-- portType implemented by the Light BPEL process -->
-    <portType name="Light">
+    <!-- portType implemented by the SwitchOnLight BPEL process -->
+    <portType name="SwitchOnLight">
         <operation name="process">
-            <input message="tns:LightRequestMessage"/>
-            <output message="tns:LightResponseMessage"/>
+            <input message="tns:SwitchOnLightRequestMessage"/>
+            <output message="tns:SwitchOnLightResponseMessage"/>
         </operation>
     </portType>   
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      PARTNER LINK TYPE DEFINITION
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
-    <plnk:partnerLinkType name="Light">
-        <plnk:role name="LightProvider" portType="tns:Light"/>
+    <plnk:partnerLinkType name="SwitchOnLight">
+        <plnk:role name="SwitchOnLightProvider" portType="tns:SwitchOnLight"/>
     </plnk:partnerLinkType>
     
 
@@ -69,10 +68,10 @@
      BINDING DEFINITION - Defines the message format and protocol details
      for a web service.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <binding name="LightBinding" type="tns:Light">
+    <binding name="SwitchOnLightBinding" type="tns:SwitchOnLight">
     	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     	<operation name="process">
-    		<soap:operation soapAction="http://eclipse.org/bpel/sample/process"/>
+    		<soap:operation soapAction="http://sample.bpel.org/bpel/sample/process"/>
     		<input>
     			<soap:body use="literal"/>
     		</input>
@@ -86,9 +85,9 @@
      SERVICE DEFINITION - A service groups a set of ports into
      a service unit.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <service name="LightService">
-    	<port binding="tns:LightBinding" name="LightPort">
-    		<soap:address location="http://localhost:8080/ode/processes/LightService"/>
+    <service name="SwitchOnLightService">
+    	<port binding="tns:SwitchOnLightBinding" name="SwitchOnLightPort">
+    		<soap:address location="http://localhost:8080/ode/processes/SwitchOnLight"/>
     	</port>
     </service>
 </definitions>
