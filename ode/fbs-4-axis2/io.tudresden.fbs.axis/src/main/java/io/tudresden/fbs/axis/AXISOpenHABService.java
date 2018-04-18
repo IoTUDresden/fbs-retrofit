@@ -12,9 +12,9 @@ import io.tudresden.fbs.axis.util.OpenHABClient;
 public class AXISOpenHABService implements Lifecycle {
 	protected static final Log LOG = LogFactory.getLog(AXISOpenHABService.class);
 	protected static final String commandLog = "sending command '%s' to '%s/rest/items/%s'...";
+	protected static final String commandLogDone = "sending command '%s' to '%s/rest/items/%s'...Done";
 	
 	protected String openhabHost = "ERROR";
-
 	
 	private OpenHABClient client;
 
@@ -29,6 +29,7 @@ public class AXISOpenHABService implements Lifecycle {
 	public void postCommand(String itemName, String command) {
 		LOG.info(String.format(commandLog, command, openhabHost, itemName));
 		client.postCommand(itemName, command);
+		LOG.info(String.format(commandLogDone, command, openhabHost, itemName));
 	}
 
 	public void destroy(ServiceContext context) {

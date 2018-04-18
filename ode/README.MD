@@ -8,6 +8,7 @@
 - Axis2 Web-Interface erreichbar über `localhost:8080/axis2`
    - Admin Panel: admin, axis2   
 - [Jersey Bundle](https://mvnrepository.com/artifact/com.sun.jersey/jersey-bundle/1.19.4) herunterladen und in den `lib` Ordnder der Axis2 Webapp kopieren (ist nötig für den FeedbackService) und ggf. neustarten
+- Tomcat Port unter `$TOMCAT_ROOT/conf/server.xml` ändern (Connector port)
    
 # BPEL Editor (Eclipse)
 - Eclipse von [hier](https://www.eclipse.org/downloads/) downloaden
