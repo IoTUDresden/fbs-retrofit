@@ -17,7 +17,7 @@
 
     <context-param>
         <param-name>EngineLogonUserName</param-name>
-        <param-value>feedbackService</param-value>
+        <param-value>openhabService</param-value>
         <description>
             The name of the logon used by the service to connect with the engine.
         </description>
@@ -49,7 +49,7 @@
 
 
     <servlet>
-        <servlet-name>feedbackService</servlet-name>
+        <servlet-name>openhabService</servlet-name>
         <servlet-class>
             org.yawlfoundation.yawl.engine.interfce.interfaceB.InterfaceB_EnvironmentBasedServer
         </servlet-class>
@@ -57,7 +57,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>feedbackService</servlet-name>
+        <servlet-name>openhabService</servlet-name>
         <url-pattern>/ib</url-pattern>
     </servlet-mapping>
 
