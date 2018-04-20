@@ -50,13 +50,13 @@
     </wsdl:binding>
     <wsdl:service name="OpenHABService">
         <wsdl:port name="OpenHABServiceHttpSoap11Endpoint" binding="ns:OpenHABServiceSoap11Binding">
-            <soap:address location="http://localhost:8080/axis2/services/OpenHABService.OpenHABServiceHttpSoap11Endpoint/"/>
+            <soap:address location="http://localhost:9999/axis2/services/OpenHABService.OpenHABServiceHttpSoap11Endpoint/"/>
         </wsdl:port>
         <wsdl:port name="OpenHABServiceHttpSoap12Endpoint" binding="ns:OpenHABServiceSoap12Binding">
-            <soap12:address location="http://localhost:8080/axis2/services/OpenHABService.OpenHABServiceHttpSoap12Endpoint/"/>
+            <soap12:address location="http://localhost:9999/axis2/services/OpenHABService.OpenHABServiceHttpSoap12Endpoint/"/>
         </wsdl:port>
         <wsdl:port name="OpenHABServiceHttpEndpoint" binding="ns:OpenHABServiceHttpBinding">
-            <http:address location="http://localhost:8080/axis2/services/OpenHABService.OpenHABServiceHttpEndpoint/"/>
+            <http:address location="http://localhost:9999/axis2/services/OpenHABService.OpenHABServiceHttpEndpoint/"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

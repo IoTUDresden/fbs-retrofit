@@ -55,6 +55,19 @@
 - Rechtsklick auf `*.wsdl` &rarr; Webservices &rarr; Test with Web Service Explorer
    - beim Durchnavigieren der Services ggf. mal auf Refresh im Navigator klicken, falls die entsprechende Seite nicht geladen wird
    
+## Logging
+- [Listener für Events](http://ode.apache.org/ode-execution-events.html)
+- `io.tudresden.ode.logging` mit `mvn package` compilieren
+- lib aus target Ordner zu `webapps/ode/WEB-INF/lib` kopieren
+- `webapps/ode/WEB-INF/lib/conf/ode-axis2.properties` anpassen: 
+   - `ode-axis2.event.listeners=io.tudresden.ode.logging.OdeLogging`
+- `webapps\ode\WEB-INF\classes\log4j.xml` anpassen
+  ```xml		
+  <Logger name="io.tudresden.ode" level="debug" additivity="false">
+    <AppenderRef ref="FILE"/>
+  </Logger>
+  ```
+   
 # BPEL cheat sheet
 - für die automatisch erstellte wsdl muss für den Process die richtige Adresse unter ODE angegeben werden &rarr; `http://localhost:8080/ode/processes/<ProcessName>`
 - in `deploy.xml` müssen die entsprechenden Ports für die Links angegeben werden

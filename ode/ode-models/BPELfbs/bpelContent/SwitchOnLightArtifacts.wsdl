@@ -87,7 +87,7 @@
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <service name="SwitchOnLightService">
     	<port binding="tns:SwitchOnLightBinding" name="SwitchOnLightPort">
-    		<soap:address location="http://localhost:8080/ode/processes/SwitchOnLight"/>
+    		<soap:address location="http://localhost:9999/ode/processes/SwitchOnLight"/>
     	</port>
     </service>
 </definitions>
