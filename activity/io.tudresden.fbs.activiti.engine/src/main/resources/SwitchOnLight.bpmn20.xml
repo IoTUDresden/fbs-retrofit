@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="SwitchOnLightKey" name="SwitchOnLight" isExecutable="true">
+    <documentation>This process switches on the light</documentation>
+    <extensionElements>
+      <activiti:eventListener class="io.tudresden.fbs.activiti.logging.ActivitiLogging"/>
+    </extensionElements>
+    <startEvent id="startEvent1"></startEvent>
+    <serviceTask id="sid-80B62A6D-C58B-49A8-BC0F-6464BCC26DCD" name="SendSomeOHCommand" activiti:class="io.tudresden.fbs.activiti.OpenHABDelegate"></serviceTask>
+    <sequenceFlow id="sid-8CB6AFE3-73DC-4307-9B0F-967C3AB8178F" sourceRef="startEvent1" targetRef="sid-80B62A6D-C58B-49A8-BC0F-6464BCC26DCD"></sequenceFlow>
+    <endEvent id="sid-656C00F0-DBCE-42C8-8AF1-6F283813147F"></endEvent>
+    <sequenceFlow id="sid-1601E92F-5D36-4794-BB69-6E562824A106" sourceRef="sid-80B62A6D-C58B-49A8-BC0F-6464BCC26DCD" targetRef="sid-656C00F0-DBCE-42C8-8AF1-6F283813147F"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_SwitchOnLightKey">
+    <bpmndi:BPMNPlane bpmnElement="SwitchOnLightKey" id="BPMNPlane_SwitchOnLightKey">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-80B62A6D-C58B-49A8-BC0F-6464BCC26DCD" id="BPMNShape_sid-80B62A6D-C58B-49A8-BC0F-6464BCC26DCD">
+        <omgdc:Bounds height="80.0" width="100.0" x="285.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-656C00F0-DBCE-42C8-8AF1-6F283813147F" id="BPMNShape_sid-656C00F0-DBCE-42C8-8AF1-6F283813147F">
+        <omgdc:Bounds height="28.0" width="28.0" x="555.0" y="146.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-1601E92F-5D36-4794-BB69-6E562824A106" id="BPMNEdge_sid-1601E92F-5D36-4794-BB69-6E562824A106">
+        <omgdi:waypoint x="385.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="555.0" y="160.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-8CB6AFE3-73DC-4307-9B0F-967C3AB8178F" id="BPMNEdge_sid-8CB6AFE3-73DC-4307-9B0F-967C3AB8178F">
+        <omgdi:waypoint x="120.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="202.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="202.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="285.0" y="160.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
