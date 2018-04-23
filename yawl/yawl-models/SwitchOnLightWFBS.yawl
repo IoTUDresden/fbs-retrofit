@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specificationSet xmlns="http://www.yawlfoundation.org/yawlschema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://www.yawlfoundation.org/yawlschema http://www.yawlfoundation.org/yawlschema/YAWL_Schema4.0.xsd">
+  <specification uri="SwitchOnLightWFBS">
+    <documentation>No description provided</documentation>
+    <metaData>
+      <creator>andre</creator>
+      <description>No description provided</description>
+      <coverage>4.2.750</coverage>
+      <version>0.5</version>
+      <persistent>false</persistent>
+      <identifier>UID_e732cfa6-64fb-4cb2-ae4d-d9a42b8ed10e</identifier>
+    </metaData>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
+    <decomposition id="Net" isRootNet="true" xsi:type="NetFactsType">
+      <localVariable>
+        <index>0</index>
+        <name>OpenhabHost</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>localhost:8080</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>1</index>
+        <name>ItemName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>Light_GF_Corridor_Ceiling</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>2</index>
+        <name>Command</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>ON</initialValue>
+      </localVariable>
+      <processControlElements>
+        <inputCondition id="InputCondition">
+          <flowsInto>
+            <nextElementRef id="OhInvokeDecomp" />
+          </flowsInto>
+        </inputCondition>
+        <task id="OhInvokeDecomp">
+          <name>OhInvokeDecomp</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;ItemName&gt;{/Net/ItemName/text()}&lt;/ItemName&gt;" />
+              <mapsTo>ItemName</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;CommandName&gt;{/Net/OpenhabHost/text()}&lt;/CommandName&gt;" />
+              <mapsTo>CommandName</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;OpenhabHost&gt;{/Net/OpenhabHost/text()}&lt;/OpenhabHost&gt;" />
+              <mapsTo>OpenhabHost</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="OhInvokeDecomp" />
+        </task>
+        <outputCondition id="OutputCondition" />
+      </processControlElements>
+    </decomposition>
+    <decomposition id="OhInvokeDecomp" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>OpenhabHost</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>ItemName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>CommandName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <yawlService id="http://localhost:9999/openhabService/ib">
+        <documentation>aha</documentation>
+      </yawlService>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+  </specification>
+  <layout>
+    <locale language="de" country="DE"/>
+    <specification id="SwitchOnLightWFBS">
+      <size w="1229" h="690"/>
+      <net id="Net">
+        <bounds x="0" y="0" w="1664" h="690"/>
+        <frame x="0" y="0" w="1528" h="708"/>
+        <viewport x="0" y="0" w="1528" h="708"/>
+        <vertex id="OutputCondition">
+          <attributes>
+            <bounds x="1.612" y="436" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <vertex id="InputCondition">
+          <attributes>
+            <bounds x="36" y="436" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <container id="OhInvokeDecomp">
+          <vertex>
+            <attributes>
+              <bounds x="244" y="440" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="206" y="472" w="108" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <flow source="InputCondition" target="OhInvokeDecomp">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="OhInvokeDecomp" target="OutputCondition">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+      </net>
+    </specification>
+  </layout>
+</specificationSet>

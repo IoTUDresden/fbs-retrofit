@@ -90,7 +90,6 @@ public class FeedbackService extends InterfaceBWebsideController {
 	 */
 	@Override
 	public void handleEnabledWorkItemEvent(WorkItemRecord wir) {
-		// TODO Auto-generated method stub
 		if (wasCanceled)
 			return;
 		LOG.info("################ handleEnabledWorkItemEvent ###################");

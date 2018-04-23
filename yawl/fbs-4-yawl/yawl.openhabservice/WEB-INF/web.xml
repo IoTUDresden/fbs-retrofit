@@ -2,12 +2,12 @@
 
 <web-app version="2.4">
 
-    <display-name>FeedbackService</display-name>
-    <description>IoTUDresden Feedback Service with MAPE-K</description>
+    <display-name>OpenhabService</display-name>
+    <description>OH Invoke</description>
 
     <context-param>
         <param-name>InterfaceBWebSideController</param-name>
-        <param-value>org.foundation.yawl.FeedbackService</param-value>
+        <param-value> io.tudresden.yawl.openhabservice.OpenhabService</param-value>
     </context-param>
 
     <context-param>
