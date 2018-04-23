@@ -3,4 +3,4 @@ target/
 build/
 .classpath
 .settings
-
+*.log
